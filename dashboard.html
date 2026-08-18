@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FreshMart - Dashboard</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles/components.css">
+  <link rel="stylesheet" href="styles/dashboard.css">
+</head>
+
+<body data-page="dashboard"
+  data-title="Good Morning Admin"
+  data-sub="Here's what's happening with your store today.">
+
+<div class="app">
+
+  <!-- Sidebar -->
+  <div id="sidebar-placeholder"></div>
+
+  <!-- Main -->
+  <div class="main">
+
+    <!-- Topbar -->
+    <div id="topbar-placeholder"></div>
+
+    <div class="page-content">
+
+      <!-- KPI Cards -->
+      <section class="kpi-row">
+
+        <div class="kpi-card kpi-teal">
+          <div class="kpi-info">
+            <p class="kpi-label">Total Sales</p>
+            <h3 class="kpi-value">Rs. 99,571</h3>
+            <div class="kpi-change up">
+              <i class="fa-solid fa-arrow-up"></i>
+              12% from yesterday
+            </div>
+          </div>
+          <div class="kpi-icon-wrap">
+            <i class="fa-solid fa-sack-dollar"></i>
+          </div>
+        </div>
+
+        <div class="kpi-card kpi-purple">
+          <div class="kpi-info">
+            <p class="kpi-label">Orders</p>
+            <h3 class="kpi-value">320</h3>
+            <div class="kpi-change up">
+              <i class="fa-solid fa-arrow-up"></i>
+              15% from yesterday
+            </div>
+          </div>
+          <div class="kpi-icon-wrap">
+            <i class="fa-solid fa-receipt"></i>
+          </div>
+        </div>
+
+        <div class="kpi-card kpi-orange">
+          <div class="kpi-info">
+            <p class="kpi-label">Total Customers</p>
+            <h3 class="kpi-value">1258</h3>
+            <div class="kpi-change up">
+              <i class="fa-solid fa-arrow-up"></i>
+              15% From yesterday
+            </div>
+          </div>
+          <div class="kpi-icon-wrap">
+            <i class="fa-solid fa-users"></i>
+          </div>
+        </div>
+
+        <div class="kpi-card kpi-pink">
+          <div class="kpi-info">
+            <p class="kpi-label">Total Profit</p>
+            <h3 class="kpi-value">Rs.25,796</h3>
+            <div class="kpi-change up">
+              <i class="fa-solid fa-arrow-up"></i>
+              15% From yesterday
+            </div>
+          </div>
+          <div class="kpi-icon-wrap">
+            <i class="fa-brands fa-bitcoin"></i>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Charts Row -->
+      <section class="charts-row">
+
+        <!-- Sales by Category (Donut) -->
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Sales by Category</h2>
+            <select class="card-select" id="categoryRange">
+              <option>This Week</option>
+              <option>This Month</option>
+              <option>This Year</option>
+            </select>
+          </div>
+          <div class="donut-layout">
+            <div class="donut-wrap">
+              <canvas id="categoryChart"></canvas>
+              <div class="donut-center">
+                <span class="donut-label">Total</span>
+                <span class="donut-value">Rs. 91,708</span>
+              </div>
+            </div>
+            <div class="category-legend" id="categoryLegend">
+              <!-- injected by JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Sales Overview (Line) -->
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Sales Overview</h2>
+            <select class="card-select" id="overviewRange">
+              <option>This Week</option>
+              <option>This Month</option>
+              <option>This Year</option>
+            </select>
+          </div>
+          <div class="line-chart-wrap">
+            <canvas id="overviewChart"></canvas>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Bottom Row -->
+      <section class="bottom-row">
+
+        <!-- Top Selling Products -->
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Top Selling Products</h2>
+            <button class="view-all-btn">View All</button>
+          </div>
+          <div class="top-product-list" id="topProductList">
+            <!-- injected by JS -->
+          </div>
+        </div>
+
+        <!-- Low Stock Alerts -->
+        <div class="card low-stock-card">
+          <div class="card-header">
+            <h2 class="card-title">Low Stock Alerts</h2>
+            <button class="view-all-btn">View All</button>
+          </div>
+          <div class="stock-list" id="stockList">
+            <!-- injected by JS -->
+          </div>
+        </div>
+
+        <!-- Recent Transactions -->
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Recent Transactions</h2>
+            <button class="view-all-btn">
+              View All <i class="fa-solid fa-chevron-down"></i>
+            </button>
+          </div>
+          <div class="transactions-list" id="transactionsList">
+            <!-- injected by JS -->
+          </div>
+        </div>
+
+      </section>
+
+    </div>
+
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="js/components.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>
