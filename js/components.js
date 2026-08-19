@@ -60,7 +60,7 @@ const FALLBACK = {
   <div class="topbar-actions">
     <button class="icon-btn"><i class="fa-regular fa-bell"></i></button>
     <button class="icon-btn"><i class="fa-solid fa-grip"></i></button>
-    <button class="icon-btn"><i class="fa-solid fa-sun"></i></button>
+    <button class="icon-btn" type="button" title="Settings" aria-label="Open settings" onclick="window.location.href='settings.html'"><i class="fa-solid fa-sun"></i></button>
   </div>
 </header>`,
 

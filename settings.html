@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FreshMart - Settings</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles/components.css">
+  <link rel="stylesheet" href="styles/settings.css">
+</head>
+
+<body data-page="settings"
+  data-title="Settings"
+  data-sub="Manage your system preferences and configuration.">
+
+<div class="app">
+
+  <!-- Sidebar -->
+  <div id="sidebar-placeholder"></div>
+
+  <!-- Main -->
+  <div class="main">
+
+    <!-- Topbar -->
+    <div id="topbar-placeholder"></div>
+
+    <div class="page-content">
+
+      <div class="settings-layout">
+
+        <!-- Settings Menu -->
+        <aside class="settings-menu card">
+          <h2 class="settings-menu-title">Settings Menu</h2>
+
+          <nav class="settings-nav">
+            <button class="settings-nav-item active" data-tab="general">
+              <i class="fa-solid fa-gear"></i>
+              <span>General Settings</span>
+            </button>
+          
+          </nav>
+        </aside>
+
+        <!-- Settings Content -->
+        <section class="settings-content card">
+
+          <!-- GENERAL SETTINGS PANEL -->
+          <div class="settings-panel active" id="panel-general">
+
+            <div class="settings-panel-header">
+              <h2 class="settings-panel-title">General Settings</h2>
+              <p class="settings-panel-sub">Manage general settings</p>
+            </div>
+
+            <form class="settings-form" id="generalSettingsForm">
+
+              <div class="form-grid">
+
+                <div class="form-group">
+                  <label for="systemName">System Name</label>
+                  <input type="text" id="systemName" name="systemName" value="FreshMart">
+                </div>
+
+                <div class="form-group">
+                  <label for="systemCurrency">System Currency</label>
+                  <select id="systemCurrency" name="systemCurrency">
+                    <option value="LKR" selected>LKR - Sri Lankan Rupee (RS.)</option>
+                    <option value="USD">USD - US Dollar ($)</option>
+                    <option value="EUR">EUR - Euro (€)</option>
+                    <option value="GBP">GBP - British Pound (£)</option>
+                    <option value="INR">INR - Indian Rupee (₹)</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="dateFormat">Date Format</label>
+                  <select id="dateFormat" name="dateFormat">
+                    <option value="DD MMM YYYY" selected>DD MMM YYYY  (01 Jun 2026)</option>
+                    <option value="MM/DD/YYYY">MM/DD/YYYY  (06/01/2026)</option>
+                    <option value="DD/MM/YYYY">DD/MM/YYYY  (01/06/2026)</option>
+                    <option value="YYYY-MM-DD">YYYY-MM-DD  (2026-06-01)</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="timeFormat">Time Format</label>
+                  <select id="timeFormat" name="timeFormat">
+                    <option value="12" selected>12 Hour   (2 : 30 PM)</option>
+                    <option value="24">24 Hour   (14 : 30)</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="language">Language</label>
+                  <select id="language" name="language">
+                    <option value="en" selected>English</option>
+                    <option value="si">Sinhala</option>
+                    <option value="ta">Tamil</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="timezone">TimeZone</label>
+                  <select id="timezone" name="timezone">
+                    <option value="" selected disabled>Select timezone</option>
+                    <option value="Asia/Colombo">Asia/Colombo (GMT+5:30)</option>
+                    <option value="Asia/Kolkata">Asia/Kolkata (GMT+5:30)</option>
+                    <option value="Asia/Dubai">Asia/Dubai (GMT+4:00)</option>
+                    <option value="UTC">UTC (GMT+0:00)</option>
+                  </select>
+                </div>
+
+              </div>
+
+              <div class="form-group full-width">
+                <label>Theme Preference</label>
+                <p class="field-desc">Choose your preferred theme for the application</p>
+
+                <div class="radio-group">
+                  <label class="radio-option">
+                    <input type="radio" name="theme" value="light" checked>
+                    <span class="radio-dot"></span>
+                    Light
+                  </label>
+                  <label class="radio-option">
+                    <input type="radio" name="theme" value="dark">
+                    <span class="radio-dot"></span>
+                    Dark
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-grid">
+
+                <div class="form-group">
+                  <label for="itemsPerPage">Items per page</label>
+                  <p class="field-desc">Select number of items to display per page</p>
+                  <select id="itemsPerPage" name="itemsPerPage">
+                    <option value="10" selected>10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="defaultDashboard">Default Dashboard</label>
+                  <p class="field-desc">Select default dashboard view</p>
+                  <select id="defaultDashboard" name="defaultDashboard">
+                    <option value="overview" selected>Overview</option>
+                    <option value="sales">Sales</option>
+                    <option value="inventory">Inventory</option>
+                    <option value="reports">Reports</option>
+                  </select>
+                </div>
+
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="btn-save">
+                  <i class="fa-regular fa-floppy-disk"></i>
+                  Save Changes
+                </button>
+              </div>
+
+            </form>
+          </div>
+
+          
+
+        </section>
+
+      </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+
+  </div>
+</div>
+
+<script src="js/components.js"></script>
+<script src="js/settings.js"></script>
+</body>
+</html>
