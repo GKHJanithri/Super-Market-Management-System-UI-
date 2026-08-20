@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FreshMart - Point of Sale</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles/components.css">
+  <link rel="stylesheet" href="styles/pos.css">
+</head>
+
+<body data-page="pos"
+  data-title="Point of Sale"
+  data-sub="Manage sales, items and transactions in one place.">
+
+<div class="app">
+
+  <!-- Sidebar -->
+  <div id="sidebar-placeholder"></div>
+
+  <!-- Main -->
+  <div class="main">
+
+    <!-- Topbar -->
+    <div id="topbar-placeholder"></div>
+
+    <div class="page-content">
+
+      <div class="pos-layout">
+
+        <!-- LEFT: Menu Items -->
+        <div class="pos-left">
+          <div class="card menu-items-card">
+
+            <div class="card-header">
+              <h2 class="card-title">Menu Items</h2>
+              <a href="products.html" class="manage-items-link">Manage Items</a>
+            </div>
+
+            <div class="menu-filter-row">
+              <select id="categoryFilter" class="category-select">
+                <option value="all">All Categories</option>
+                <option value="groceries">Groceries</option>
+                <option value="beverages">Beverages</option>
+                <option value="personal-care">Personal Care</option>
+                <option value="dairy">Dairy</option>
+              </select>
+
+              <div class="search-product-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="productSearch" placeholder="Search or Scan Product">
+              </div>
+            </div>
+
+            <div class="product-grid" id="productGrid">
+              <!-- injected by JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: Current Sale + Recent Transactions -->
+        <div class="pos-right">
+
+          <div class="card current-sale-card">
+            <div class="card-header">
+              <h2 class="card-title">Current Sale</h2>
+              <button class="clear-cart-btn" id="clearCartBtn">
+                <i class="fa-regular fa-trash-can"></i> Clear Cart
+              </button>
+            </div>
+
+            <div class="cart-table-wrap">
+              <table class="cart-table">
+                <thead>
+                  <tr>
+                    <th>Item</th>
+                    <th>Price</th>
+                    <th>Qty</th>
+                    <th>Total</th>
+                  </tr>
+                </thead>
+                <tbody id="cartTableBody">
+                  <!-- injected by JS -->
+                </tbody>
+              </table>
+              <p class="cart-empty" id="cartEmpty">No items in cart yet.</p>
+            </div>
+
+            <div class="cart-summary">
+              <div class="summary-row">
+                <span>Sub Total (<span id="cartItemCount">0</span> items)</span>
+                <span id="subTotal">Rs. 0.00</span>
+              </div>
+              <div class="summary-row">
+                <span>Discount</span>
+                <span id="discount">Rs. 0.00</span>
+              </div>
+              <div class="summary-row">
+                <span>Tax (5%)</span>
+                <span id="tax">Rs. 0.00</span>
+              </div>
+              <div class="summary-row total-row">
+                <span>Total</span>
+                <span id="grandTotal">Rs. 0.00</span>
+              </div>
+            </div>
+
+            <button class="pay-btn" id="payBtn">
+              <i class="fa-solid fa-circle-check"></i> Pay
+            </button>
+
+            <div class="payment-methods">
+              <button class="pm-btn active" data-method="Cash">
+                <i class="fa-solid fa-money-bill-wave"></i> Cash
+              </button>
+              <button class="pm-btn" data-method="Card">
+                <i class="fa-regular fa-credit-card"></i> Card
+              </button>
+              <button class="pm-btn" data-method="Other">
+                <i class="fa-solid fa-ellipsis"></i> Other
+              </button>
+            </div>
+          </div>
+
+          <div class="card recent-transactions-card">
+            <div class="card-header">
+              <h2 class="card-title">Recent Transactions</h2>
+            </div>
+
+            <div class="transactions-table-wrap">
+              <table class="transactions-table">
+                <thead>
+                  <tr>
+                    <th>Receipt ID</th>
+                    <th>Date &amp; Time</th>
+                    <th>Items</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="recentTransactionsBody">
+                  <!-- injected by JS -->
+                </tbody>
+              </table>
+            </div>
+
+            <p class="transactions-footer" id="transactionsFooter"></p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+
+  </div>
+</div>
+
+<script src="js/components.js"></script>
+<script src="js/pos.js"></script>
+</body>
+</html>
