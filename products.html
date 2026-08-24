@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FreshMart - Products</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles/components.css">
+  <link rel="stylesheet" href="styles/products.css">
+</head>
+
+<body data-page="products"
+  data-title="Products"
+  data-sub="Manage all your products, stock and pricing.">
+
+<div class="app">
+
+  <div id="sidebar-placeholder"></div>
+
+  <div class="main">
+
+    <div id="topbar-placeholder"></div>
+
+    <div class="page-content">
+
+      <!-- KPI Cards -->
+      <section class="kpi-row">
+
+        <div class="kpi-card kpi-blue">
+          <div class="kpi-info">
+            <p class="kpi-label">Total Products</p>
+            <h3 class="kpi-value" id="kpiTotal">538</h3>
+            <span class="kpi-sub">All Products</span>
+          </div>
+          <div class="kpi-icon-wrap">
+            <i class="fa-solid fa-bag-shopping"></i>
+          </div>
+        </div>
+
+        <div class="kpi-card kpi-green">
+          <div class="kpi-info">
+            <p class="kpi-label">Active Products</p>
+            <h3 class="kpi-value" id="kpiActive">320</h3>
+            <span class="kpi-sub">In Stock</span>
+          </div>
+          <div class="kpi-icon-wrap">
+            <i class="fa-solid fa-clipboard-list"></i>
+          </div>
+        </div>
+
+        <div class="kpi-card kpi-yellow">
+          <div class="kpi-info">
+            <p class="kpi-label">Low Stock</p>
+            <h3 class="kpi-value" id="kpiLow">55</h3>
+            <span class="kpi-sub">Recorder soon</span>
+          </div>
+          <div class="kpi-icon-wrap">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+          </div>
+        </div>
+
+        <div class="kpi-card kpi-red">
+          <div class="kpi-info">
+            <p class="kpi-label">Out of Stock</p>
+            <h3 class="kpi-value" id="kpiOut">43</h3>
+            <span class="kpi-sub">Not Available</span>
+          </div>
+          <div class="kpi-icon-wrap">
+            <i class="fa-solid fa-box-open"></i>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Products Table Card -->
+      <div class="card products-card">
+
+        <!-- Filters Row -->
+        <div class="filters-row">
+          <div class="search-box-prod">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="searchInput"
+              placeholder="Search Products...">
+          </div>
+
+          <select class="filter-select" id="categoryFilter">
+            <option value="">All Categories</option>
+            <option value="Oils">Oils</option>
+            <option value="Groceries">Groceries</option>
+            <option value="Beverages">Beverages</option>
+            <option value="Personal Care">Personal Care</option>
+            <option value="Health & Drink">Health &amp; Drink</option>
+            <option value="Household">Household</option>
+            <option value="Spread">Spread</option>
+          </select>
+
+          <select class="filter-select" id="supplierFilter">
+            <option value="">All Suppliers</option>
+            <option value="Sunshine Suppliers">Sunshine Suppliers</option>
+            <option value="Leka Foods (Pvt) Ltd">Leka Foods (Pvt) Ltd</option>
+            <option value="Ceylon Beverages">Ceylon Beverages</option>
+            <option value="Care & Glow Pvt">Care &amp; Glow Pvt</option>
+            <option value="Lanka Foods (Pvt) Ltd">Lanka Foods (Pvt) Ltd</option>
+            <option value="Gold Suppliers">Gold Suppliers</option>
+          </select>
+
+          <select class="filter-select" id="statusFilter">
+            <option value="">All Status</option>
+            <option value="In Stock">In Stock</option>
+            <option value="Low Stock">Low Stock</option>
+            <option value="Out Of Stock">Out Of Stock</option>
+          </select>
+
+          <button class="btn-filters">
+            <i class="fa-solid fa-sliders"></i> Filters
+          </button>
+
+          <button class="btn-add-product" id="addProductBtn">
+            <i class="fa-solid fa-plus"></i> Add Product
+          </button>
+        </div>
+
+        <!-- Table -->
+        <h3 class="table-heading">All Products</h3>
+
+        <div class="table-wrap">
+          <table class="prod-table">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Category</th>
+                <th>Supplier</th>
+                <th>Price (RS. )</th>
+                <th>Stock</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="productsBody">
+              <!-- injected by JS -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination-row">
+          <span class="results-text" id="resultsText">
+            Showing 1 to 7 products
+          </span>
+          <div class="pagination">
+            <button class="page-btn" id="prevPage">
+              <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button class="page-btn active">1</button>
+            <button class="page-btn" id="nextPage">
+              <i class="fa-solid fa-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div id="footer-placeholder"></div>
+
+  </div>
+</div>
+
+<!-- Add / Edit Product Modal -->
+<div class="modal-overlay" id="productModal">
+  <div class="modal-box">
+
+    <div class="modal-header">
+      <h3 id="modalTitle">Add New Product</h3>
+      <button class="modal-close" id="closeModalBtn">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <form id="productForm" class="modal-form">
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="prodName">Product Name *</label>
+          <input type="text" id="prodName"
+            placeholder="e.g. Sunflower Oil 1L" required>
+        </div>
+        <div class="form-group">
+          <label for="prodCategory">Category *</label>
+          <select id="prodCategory" required>
+            <option value="">Select category</option>
+            <option value="Oils">Oils</option>
+            <option value="Groceries">Groceries</option>
+            <option value="Beverages">Beverages</option>
+            <option value="Personal Care">Personal Care</option>
+            <option value="Health & Drink">Health &amp; Drink</option>
+            <option value="Household">Household</option>
+            <option value="Spread">Spread</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="prodSupplier">Supplier *</label>
+          <select id="prodSupplier" required>
+            <option value="">Select supplier</option>
+            <option value="Sunshine Suppliers">Sunshine Suppliers</option>
+            <option value="Leka Foods (Pvt) Ltd">Leka Foods (Pvt) Ltd</option>
+            <option value="Ceylon Beverages">Ceylon Beverages</option>
+            <option value="Care & Glow Pvt">Care &amp; Glow Pvt</option>
+            <option value="Lanka Foods (Pvt) Ltd">Lanka Foods (Pvt) Ltd</option>
+            <option value="Gold Suppliers">Gold Suppliers</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="prodPrice">Price (Rs.) *</label>
+          <input type="number" id="prodPrice"
+            min="0" step="0.01"
+            placeholder="e.g. 3950.00" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="prodStock">Stock Qty *</label>
+          <input type="number" id="prodStock"
+            min="0" placeholder="e.g. 85" required>
+        </div>
+        <div class="form-group">
+          <label for="prodImageFile">Product Image</label>
+          <div class="image-upload">
+            <input type="file" id="prodImageFile" accept="image/*">
+            <label class="image-upload-box" for="prodImageFile">
+              <i class="fa-solid fa-cloud-arrow-up"></i>
+              <span id="imageUploadText">Choose an image</span>
+              <small>PNG, JPG or WEBP</small>
+            </label>
+            <img id="imagePreview" class="image-preview" alt="Selected product preview">
+          </div>
+          <label class="image-url-label" for="prodImage">Or use an image path</label>
+          <input type="text" id="prodImage"
+            placeholder="images/product.jpg">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="prodNotes">Notes (optional)</label>
+        <textarea id="prodNotes" rows="2"
+          placeholder="Any additional notes..."></textarea>
+      </div>
+
+      <input type="hidden" id="editProdIndex" value="">
+
+      <div class="modal-actions">
+        <button type="button" class="btn-cancel"
+          id="cancelModalBtn">Cancel</button>
+        <button type="submit" class="btn-save">
+          <i class="fa-solid fa-check"></i> Save Product
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+<!-- View Product Modal -->
+<div class="modal-overlay" id="viewModal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3 id="viewModalTitle">Product Details</h3>
+      <button class="modal-close" id="closeViewBtn">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <div class="view-body" id="viewBody"></div>
+    <div class="modal-footer-actions">
+      <button class="btn-cancel" id="closeViewBtn2">Close</button>
+      <button class="btn-save" id="editFromViewBtn">
+        <i class="fa-solid fa-pen"></i> Edit
+      </button>
+    </div>
+  </div>
+</div>
+
+<script src="js/components.js"></script>
+<script src="js/products.js"></script>
+</body>
+</html>
