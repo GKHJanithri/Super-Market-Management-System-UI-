@@ -12,7 +12,7 @@ const products = [
     price: 3950.00,
     stock: 85,
     status: 'In Stock',
-    img: '',
+    img: 'images/sun.jpg',
     emoji: '🫙',
     notes: ''
   },
@@ -23,7 +23,7 @@ const products = [
     price: 950.00,
     stock: 110,
     status: 'In Stock',
-    img: '',
+    img: 'images/sugar.jpg',
     emoji: '🍬',
     notes: ''
   },
@@ -34,7 +34,7 @@ const products = [
     price: 530.00,
     stock: 90,
     status: 'In Stock',
-    img: '',
+    img: 'images/cock.jpg',
     emoji: '🥤',
     notes: ''
   },
@@ -56,7 +56,7 @@ const products = [
     price: 970.00,
     stock: 10,
     status: 'Low Stock',
-    img: '',
+    img: 'images/nestomalt.jpg',
     emoji: '🥛',
     notes: ''
   },
@@ -67,7 +67,7 @@ const products = [
     price: 960.00,
     stock: 0,
     status: 'Out Of Stock',
-    img: '',
+    img: 'images/surfexcel.jpg',
     emoji: '🧺',
     notes: ''
   },
@@ -78,7 +78,7 @@ const products = [
     price: 764.00,
     stock: 500,
     status: 'In Stock',
-    img: '',
+    img: 'images/nut.jpg',
     emoji: '🫙',
     notes: ''
   }
