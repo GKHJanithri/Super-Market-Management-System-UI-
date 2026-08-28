@@ -6,7 +6,7 @@ Frontend UI for the **Supermarket Management System**, designed and developed fo
 
 ## Project Overview
 
-This project focuses on creating a modern, responsive, and user-friendly **Supermarket Management System interface**. The UI was designed to provide an efficient experience for managing supermarket operations through a clean dashboard and Point of Sale (POS) interface.
+This project focuses on creating a modern, responsive, and user-friendly **Supermarket Management System interface**. The UI was designed to provide an efficient experience for managing supermarket operations through a clean dashboard, Point of Sale (POS), product management, category management, and settings interfaces.
 
 The project follows a reusable component architecture by separating common UI elements such as the **Sidebar, Topbar, and Footer** into individual components and integrating them into the main system pages.
 
@@ -26,23 +26,35 @@ The project follows a reusable component architecture by separating common UI el
 
 ```text
 Super-Market-Management-System-UI
+
 │
 ├── components
 │   ├── footer.html
 │   ├── sidebar.html
 │   └── topbar.html
 │
+├── images
+│
 ├── js
+│   ├── Categories.js
 │   ├── components.js
 │   ├── dashboard.js
+│   ├── pos.js
+│   ├── products.js
 │   └── settings.js
 │
 ├── styles
+│   ├── Categories.css
 │   ├── components.css
 │   ├── dashboard.css
+│   ├── pos.css
+│   ├── products.css
 │   └── settings.css
 │
+├── Categories.html
 ├── dashboard.html
+├── pos.html
+├── products.html
 ├── settings.html
 │
 └── README.md
@@ -74,7 +86,31 @@ Super-Market-Management-System-UI
 * Current sale summary with quantity and price
 * Total amount calculation
 * Recent transactions overview
+* Payment and checkout section
 * Easy checkout process
+
+### Products
+
+* Product management interface
+* Product information displayed in an organized layout
+* Product search functionality
+* Product filtering options
+* Product status indicators
+* Product action buttons
+* Product statistics and summary cards
+* Responsive product management layout
+
+### Categories
+
+* Category management interface
+* Category summary cards
+* Search categories functionality
+* Category filtering options
+* Category information displayed in an organized table
+* Active and inactive category status indicators
+* Category action buttons for management
+* Add Category option
+* Responsive category management layout
 
 ### Settings
 
@@ -90,16 +126,19 @@ Super-Market-Management-System-UI
 * Separate Topbar component
 * Separate Footer component
 * Component-based structure for better maintainability
+* Reusable components integrated across system pages
 * Easy integration and future expansion
 
 ### User Interface Design
 
 * Clean and professional supermarket-themed design
-* Modern dashboard layout
-* Responsive design for different screen sizes
+* Modern and responsive layouts
+* Consistent color palette across all pages
 * Organized navigation structure
 * Product-focused POS interface
+* Clear product and category management interfaces
 * Interactive and user-friendly components
+* Consistent Sidebar, Topbar, and Footer across pages
 
 ---
 
@@ -107,6 +146,8 @@ Super-Market-Management-System-UI
 
 * Supermarket Management Dashboard
 * Point of Sale Page
+* Products Page
+* Categories Page
 * Settings Page
 * Sidebar Component
 * Topbar Component
@@ -123,17 +164,21 @@ Super-Market-Management-System-UI
 5. Added JavaScript functionality for reusable components and page interactions.
 6. Created reusable **Sidebar, Topbar, and Footer** components.
 7. Designed the supermarket dashboard with sales, products, stock, and transaction sections.
-8. Designed the **Point of Sale** page with menu items, product images, current sale, and checkout sections.
-9. Developed the Settings page for managing system preferences.
-10. Organized files into separate folders for better project management.
-11. Tested and refined the UI for a better user experience.
+8. Designed and implemented the **Point of Sale** page with menu items, product images, current sale, and checkout sections.
+9. Designed and implemented the **Products** page for managing supermarket products.
+10. Designed and implemented the **Categories** page with search, filters, summary cards, category information, and action buttons.
+11. Developed the **Settings** page for managing system preferences.
+12. Organized files into separate folders for better project management.
+13. Tested and refined the UI for a better user experience and responsive layout.
 
 ---
 
 ## Future Improvements
 
 * Add complete Point of Sale functionality
-* Add product and inventory management
+* Add product CRUD functionality
+* Add category CRUD functionality
+* Add inventory management
 * Add supplier management
 * Add customer management
 * Add employee management
