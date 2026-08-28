@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Categories | Fresh Mart Super Market Management</title>
+
+<link rel="stylesheet" href="styles/components.css" />
+<link rel="stylesheet" href="styles/Categories.css" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+<body data-page="categories">
+
+  <div class="app">
+
+    <!-- Sidebar gets injected here by js/components.js -->
+    <div id="sidebar-placeholder"></div>
+
+    <div class="main">
+
+      <!-- Topbar gets injected here by js/components.js -->
+      <div id="topbar-placeholder"></div>
+
+      <main class="page-body">
+
+        <div class="page-header">
+          <div>
+            <h1>Categories</h1>
+            <p class="page-subtitle">Organize your products into categories for better management.</p>
+          </div>
+        </div>
+
+        <!-- Stat cards -->
+        <section class="stats-grid">
+          <div class="stat-card stat-blue">
+            <div class="stat-icon"><i class="fa-solid fa-layer-group"></i></div>
+            <div class="stat-info">
+              <span class="stat-label">Total Categories</span>
+              <span class="stat-value" id="statTotal">-</span>
+              <span class="stat-trend neutral">All Categories</span>
+            </div>
+          </div>
+
+          <div class="stat-card stat-green">
+            <div class="stat-icon"><i class="fa-solid fa-check"></i></div>
+            <div class="stat-info">
+              <span class="stat-label">Active Categories</span>
+              <span class="stat-value" id="statActive">-</span>
+              <span class="stat-trend neutral">Active</span>
+            </div>
+          </div>
+
+          <div class="stat-card stat-orange">
+            <div class="stat-icon"><i class="fa-solid fa-xmark"></i></div>
+            <div class="stat-info">
+              <span class="stat-label">Inactive Categories</span>
+              <span class="stat-value" id="statInactive">-</span>
+              <span class="stat-trend neutral">Reorder soon</span>
+            </div>
+          </div>
+
+          <div class="stat-card stat-red">
+            <div class="stat-icon"><i class="fa-solid fa-check-double"></i></div>
+            <div class="stat-info">
+              <span class="stat-label">Total Products</span>
+              <span class="stat-value" id="statProducts">-</span>
+              <span class="stat-trend neutral">In these categories</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Table card -->
+        <section class="table-card">
+          <div class="table-toolbar">
+            <div class="search-box">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input type="text" id="tableSearch" placeholder="Search Products..." />
+            </div>
+            <button class="add-category-btn" id="openAddCategoryBtn">
+              <i class="fa-solid fa-plus"></i> Add Category
+            </button>
+          </div>
+
+          <h2 class="table-title">All Categories</h2>
+
+          <div class="table-scroll">
+            <table class="categories-table">
+              <thead>
+                <tr>
+                  <th>Category</th>
+                  <th>Description</th>
+                  <th>Products</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="categoriesTableBody"><!-- Rendered by js/categories.js --></tbody>
+            </table>
+          </div>
+
+          <div class="table-footer">
+            <span id="paginationSummary">Showing 1 to 7 categories</span>
+            <div class="pagination">
+              <button class="page-nav" id="prevPage">&lt;</button>
+              <button class="page-number active">1</button>
+              <button class="page-nav" id="nextPage">&gt;</button>
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      <!-- Footer gets injected here by js/components.js -->
+      <div id="footer-placeholder"></div>
+
+    </div>
+  </div>
+
+  <!-- ================= Add Category Modal ================= -->
+  <div class="modal-overlay" id="addCategoryOverlay">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h2>Add Category</h2>
+        <button class="modal-close" id="closeAddCategoryBtn">✕</button>
+      </div>
+
+      <form id="addCategoryForm" novalidate>
+        <div class="form-group">
+          <label for="fieldCategoryName">Category Name <span class="required">*</span></label>
+          <input type="text" id="fieldCategoryName" placeholder="e.g. Beverages" required />
+        </div>
+
+        <div class="form-group">
+          <label for="fieldDescription">Description <span class="required">*</span></label>
+          <textarea id="fieldDescription" rows="3" placeholder="Short description of this category" required></textarea>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fieldIcon">Icon</label>
+            <select id="fieldIcon">
+              <option value="fa-mug-hot" data-color="#1F9254">☕ Beverages</option>
+              <option value="fa-basket-shopping" data-color="#D14343">🛒 Groceries</option>
+              <option value="fa-pump-soap" data-color="#B8860B">🧴 Personal Care</option>
+              <option value="fa-cookie" data-color="#B8720A">🍪 Snacks</option>
+              <option value="fa-broom" data-color="#4B4D5A">🧹 Household</option>
+              <option value="fa-snowflake" data-color="#3468D1">❄️ Frozen</option>
+              <option value="fa-baby" data-color="#C2185B">🍼 Baby Care</option>
+              <option value="fa-tag" data-color="#7C4FC7">🏷 Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="fieldProducts">Products <span class="hint">(count, optional)</span></label>
+            <input type="number" id="fieldProducts" min="0" placeholder="e.g. 0" value="0" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="fieldStatus">Status</label>
+          <select id="fieldStatus">
+            <option value="Active" selected>Active</option>
+            <option value="Inactive">Inactive</option>
+          </select>
+        </div>
+
+        <p class="form-error" id="addCategoryError"></p>
+
+        <div class="modal-actions">
+          <button type="button" class="btn-secondary" id="cancelAddCategoryBtn">Cancel</button>
+          <button type="submit" class="btn-primary">Add Category</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+<script src="js/components.js"></script>
+<script src="js/Categories.js"></script>
+</body>
+</html>
