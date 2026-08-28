@@ -396,3 +396,54 @@
   .search-box { max-width: 100%; }
   .form-row { grid-template-columns: 1fr; }
 }
+
+/* ---------- View Category Modal ---------- */
+.view-category-content {
+  margin-bottom: 20px;
+}
+
+.view-field {
+  margin-bottom: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.view-field label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #4B4D5A;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.view-field p {
+  font-size: 14px;
+  color: #1E1B2E;
+  margin: 0;
+  word-break: break-word;
+}
+
+.view-icon-name {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.view-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.view-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}

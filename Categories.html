@@ -176,6 +176,104 @@
     </div>
   </div>
 
+  <!-- ================= View Category Modal ================= -->
+  <div class="modal-overlay" id="viewCategoryOverlay">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h2>View Category</h2>
+        <button class="modal-close" id="closeViewCategoryBtn">✕</button>
+      </div>
+
+      <div class="view-category-content">
+        <div class="view-field">
+          <label>Category Name</label>
+          <div class="view-icon-name">
+            <div class="view-icon" id="viewCategoryIcon"></div>
+            <p id="viewCategoryName"></p>
+          </div>
+        </div>
+
+        <div class="view-field">
+          <label>Description</label>
+          <p id="viewCategoryDescription"></p>
+        </div>
+
+        <div class="view-row">
+          <div class="view-field">
+            <label>Products</label>
+            <p id="viewCategoryProducts"></p>
+          </div>
+          <div class="view-field">
+            <label>Status</label>
+            <p id="viewCategoryStatus"></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" class="btn-secondary" id="closeViewCategoryBtn2">Close</button>
+        <button type="button" class="btn-primary" id="editFromViewBtn">Edit</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= Edit Category Modal ================= -->
+  <div class="modal-overlay" id="editCategoryOverlay">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h2>Edit Category</h2>
+        <button class="modal-close" id="closeEditCategoryBtn">✕</button>
+      </div>
+
+      <form id="editCategoryForm" novalidate>
+        <div class="form-group">
+          <label for="editFieldCategoryName">Category Name <span class="required">*</span></label>
+          <input type="text" id="editFieldCategoryName" placeholder="e.g. Beverages" required />
+        </div>
+
+        <div class="form-group">
+          <label for="editFieldDescription">Description <span class="required">*</span></label>
+          <textarea id="editFieldDescription" rows="3" placeholder="Short description of this category" required></textarea>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="editFieldIcon">Icon</label>
+            <select id="editFieldIcon">
+              <option value="fa-mug-hot" data-color="#1F9254">☕ Beverages</option>
+              <option value="fa-basket-shopping" data-color="#D14343">🛒 Groceries</option>
+              <option value="fa-pump-soap" data-color="#B8860B">🧴 Personal Care</option>
+              <option value="fa-cookie" data-color="#B8720A">🍪 Snacks</option>
+              <option value="fa-broom" data-color="#4B4D5A">🧹 Household</option>
+              <option value="fa-snowflake" data-color="#3468D1">❄️ Frozen</option>
+              <option value="fa-baby" data-color="#C2185B">🍼 Baby Care</option>
+              <option value="fa-tag" data-color="#7C4FC7">🏷 Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="editFieldProducts">Products <span class="hint">(count, optional)</span></label>
+            <input type="number" id="editFieldProducts" min="0" placeholder="e.g. 0" value="0" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="editFieldStatus">Status</label>
+          <select id="editFieldStatus">
+            <option value="Active">Active</option>
+            <option value="Inactive">Inactive</option>
+          </select>
+        </div>
+
+        <p class="form-error" id="editCategoryError"></p>
+
+        <div class="modal-actions">
+          <button type="button" class="btn-secondary" id="cancelEditCategoryBtn">Cancel</button>
+          <button type="submit" class="btn-primary">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
 <script src="js/components.js"></script>
 <script src="js/Categories.js"></script>
 </body>

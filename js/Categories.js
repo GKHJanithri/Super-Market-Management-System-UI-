@@ -76,10 +76,95 @@ function renderCategoriesTable() {
     `Showing 1 to ${filtered.length} of ${categoriesData.length} categories`;
 }
 
-/* ---------------- Row actions ---------------- */
-function editCategory(index) { console.log("Edit category", categoriesData[index]); }
-function viewCategory(index) { console.log("View category", categoriesData[index]); }
+/* ---------------- Row actions - View Category ---------------- */
+function viewCategory(index) {
+  const category = categoriesData[index];
+  document.getElementById("viewCategoryName").textContent = category.name;
+  document.getElementById("viewCategoryDescription").textContent = category.description;
+  document.getElementById("viewCategoryProducts").textContent = category.products;
+  
+  const statusSpan = document.getElementById("viewCategoryStatus");
+  statusSpan.innerHTML = `<span class="status-badge status-${category.status.toLowerCase()}">${category.status}</span>`;
+  
+  const iconEl = document.getElementById("viewCategoryIcon");
+  iconEl.style.background = category.color;
+  iconEl.innerHTML = `<i class="fa-solid ${category.icon}"></i>`;
+  
+  // Store index for edit button
+  document.getElementById("editFromViewBtn").dataset.categoryIndex = index;
+  
+  document.getElementById("viewCategoryOverlay").classList.add("open");
+}
 
+function closeViewCategoryModal() {
+  document.getElementById("viewCategoryOverlay").classList.remove("open");
+}
+
+/* ---------------- Row actions - Edit Category ---------------- */
+let editingCategoryIndex = null;
+
+function editCategory(index) {
+  editingCategoryIndex = index;
+  const category = categoriesData[index];
+  
+  document.getElementById("editFieldCategoryName").value = category.name;
+  document.getElementById("editFieldDescription").value = category.description;
+  document.getElementById("editFieldIcon").value = category.icon;
+  document.getElementById("editFieldProducts").value = category.products;
+  document.getElementById("editFieldStatus").value = category.status;
+  document.getElementById("editCategoryError").textContent = "";
+  
+  document.getElementById("editCategoryOverlay").classList.add("open");
+}
+
+function closeEditCategoryModal() {
+  document.getElementById("editCategoryOverlay").classList.remove("open");
+  document.getElementById("editCategoryForm").reset();
+  document.getElementById("editCategoryError").textContent = "";
+  editingCategoryIndex = null;
+}
+
+function handleEditCategorySubmit(e) {
+  e.preventDefault();
+  const errorEl = document.getElementById("editCategoryError");
+
+  if (editingCategoryIndex === null) {
+    errorEl.textContent = "An error occurred. Please try again.";
+    return;
+  }
+
+  const name = document.getElementById("editFieldCategoryName").value.trim();
+  const description = document.getElementById("editFieldDescription").value.trim();
+  const iconSelect = document.getElementById("editFieldIcon");
+  const icon = iconSelect.value;
+  const color = iconSelect.options[iconSelect.selectedIndex].dataset.color;
+  const products = document.getElementById("editFieldProducts").value || 0;
+  const status = document.getElementById("editFieldStatus").value;
+
+  if (!name || !description) {
+    errorEl.textContent = "Please fill in the category name and description.";
+    return;
+  }
+
+  categoriesData[editingCategoryIndex] = {
+    name, description,
+    products: Number(products),
+    status, icon, color
+  };
+
+  closeEditCategoryModal();
+  renderCategoriesTable();
+  renderStats();
+
+  // This is where you'd call your real "update category" API. Example:
+  // fetch(`/api/categories/${editingCategoryIndex}`, {
+  //   method: "PUT",
+  //   headers: { "Content-Type": "application/json" },
+  //   body: JSON.stringify({ name, description, products, status, icon })
+  // });
+}
+
+/* ---------------- Row actions - Delete Category ---------------- */
 function deleteCategory(index) {
   const category = categoriesData[index];
   if (!confirm(`Delete "${category.name}"? This can't be undone.`)) return;
@@ -141,15 +226,43 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.getElementById("tableSearch").addEventListener("input", renderCategoriesTable);
 
+  // Add Category Modal
   document.getElementById("openAddCategoryBtn").addEventListener("click", openAddCategoryModal);
   document.getElementById("closeAddCategoryBtn").addEventListener("click", closeAddCategoryModal);
   document.getElementById("cancelAddCategoryBtn").addEventListener("click", closeAddCategoryModal);
   document.getElementById("addCategoryForm").addEventListener("submit", handleAddCategorySubmit);
 
+  // View Category Modal
+  document.getElementById("closeViewCategoryBtn").addEventListener("click", closeViewCategoryModal);
+  document.getElementById("closeViewCategoryBtn2").addEventListener("click", closeViewCategoryModal);
+  document.getElementById("editFromViewBtn").addEventListener("click", (e) => {
+    const index = parseInt(e.target.dataset.categoryIndex);
+    closeViewCategoryModal();
+    editCategory(index);
+  });
+
+  // Edit Category Modal
+  document.getElementById("closeEditCategoryBtn").addEventListener("click", closeEditCategoryModal);
+  document.getElementById("cancelEditCategoryBtn").addEventListener("click", closeEditCategoryModal);
+  document.getElementById("editCategoryForm").addEventListener("submit", handleEditCategorySubmit);
+
+  // Close modals on overlay click
   document.getElementById("addCategoryOverlay").addEventListener("click", (e) => {
     if (e.target.id === "addCategoryOverlay") closeAddCategoryModal();
   });
+  document.getElementById("viewCategoryOverlay").addEventListener("click", (e) => {
+    if (e.target.id === "viewCategoryOverlay") closeViewCategoryModal();
+  });
+  document.getElementById("editCategoryOverlay").addEventListener("click", (e) => {
+    if (e.target.id === "editCategoryOverlay") closeEditCategoryModal();
+  });
+
+  // Close modals on Escape key
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeAddCategoryModal();
+    if (e.key === "Escape") {
+      closeAddCategoryModal();
+      closeViewCategoryModal();
+      closeEditCategoryModal();
+    }
   });
 });
